@@ -144,8 +144,12 @@ class BareClusterLauncher(DcosCloudformationLauncher, dcos_launch.util.AbstractO
         }
         if not self.config['key_helper']:
             template_parameters['KeyName'] = self.config['aws_key_name']
+        template_body = dcos_launch.platforms.aws.template_by_instance_type(self.config['instance_type'])
+        if 'aws_block_device_mappings' in self.config:
+            template_body['Resources']['BareServerLaunchConfig']['BlockDeviceMappings'].extend(
+                self.config['aws_block_device_mappings'])
         self.config.update({
-            'template_body': dcos_launch.platforms.aws.template_by_instance_type(self.config['instance_type']),
+            'template_body': template_body,
             'template_parameters': template_parameters})
         return super().create()
 

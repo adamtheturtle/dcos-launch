@@ -390,7 +390,15 @@ AWS_ONPREM_SCHEMA = {
     'ssh_user': {
         'required': True,
         'type': 'string',
-        'default_setter': lambda doc: aws.OS_SSH_INFO[doc['os_name']].user}}
+        'default_setter': lambda doc: aws.OS_SSH_INFO[doc['os_name']].user},
+    'aws_block_device_mappings': {
+        'required': False,
+        'type': 'list',
+        'valueschema': {
+            'type': 'dict',
+            'allow_unknown': True}
+    }
+}
 
 
 def get_platform_dependent_acs_engine_url():
