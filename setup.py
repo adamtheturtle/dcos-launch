@@ -51,6 +51,7 @@ setup(
             'ip-detect-public/aws.sh',
             'ip-detect-public/gcp.sh',
             'scripts/install_prereqs.sh',
+            'scripts/run_coreos_prereqs.sh',
             'templates/vpc-cluster-template.json',
             'templates/vpc-ebs-only-cluster-template.json',
             'fault-domain-detect/aws.sh',
